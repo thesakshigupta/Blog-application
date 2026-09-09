@@ -1,7 +1,8 @@
-
+import dotenv from "dotenv";
+dotenv.config();
 const config = (value) => {
     if (!value) {
-        throw new Error(`Missing environment variable: ${value}`);
+        throw new Error(`Missing environment variable: ${name}`);
     }
     return value;
 };
@@ -10,5 +11,6 @@ const env = {
     PORT: config(process.env.PORT),
     MONGO_URI: config(process.env.MONGO_URI)
 };
+
 
 export default env;
