@@ -18,9 +18,10 @@ password: {
     type: String,
     required: true
 },
-Phone_No: {
+phone_No: {
     type: Number, 
     required: false,
+    default: "000-000-0000"
 },
 avatar: {
     type: String,
@@ -29,6 +30,6 @@ avatar: {
 }, {timestamps: true}
 );
 
-const User = mongoose.model("User", userSchema);
-export default User;
+const UserModel = mongoose.model("User", userSchema);
+export default UserModel;
 

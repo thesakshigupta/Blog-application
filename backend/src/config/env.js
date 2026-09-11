@@ -9,7 +9,8 @@ const config = (value) => {
 
 const env = {
     PORT: config(process.env.PORT),
-    MONGO_URI: config(process.env.MONGO_URI)
+    MONGO_URI: config(process.env.MONGO_URI),
+    jWT_SECRET: config(process.env.JWT_SECRET)
 };
 
 
