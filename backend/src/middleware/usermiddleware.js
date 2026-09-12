@@ -9,7 +9,7 @@ export const authentication = (req, res, next) => {
             return sendRes(res, 401, "Unauthorized! Please log in.", "error", null);
         }
         const decode = verifyToken(token);
-        req.user = decoded;
+        req.user = decode;
         next()
     } catch (error) {
         return sendRes(res, 401, "Unauthorized! or Internal Server Error", "error", null)

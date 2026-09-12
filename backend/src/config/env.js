@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-const config = (value) => {
+const config = (value, name) => {
     if (!value) {
         throw new Error(`Missing environment variable: ${name}`);
     }
@@ -10,8 +10,9 @@ const config = (value) => {
 const env = {
     PORT: config(process.env.PORT),
     MONGO_URI: config(process.env.MONGO_URI),
-    jWT_SECRET: config(process.env.JWT_SECRET)
+    JWT_SECRET: config(process.env.JWT_SECRET)
 };
 
 
 export default env;
+

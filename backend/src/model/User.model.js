@@ -16,7 +16,9 @@ email : {
 },
 password: {
     type: String,
-    required: true
+    required: true,
+    select: false
+
 },
 phone_No: {
     type: Number, 

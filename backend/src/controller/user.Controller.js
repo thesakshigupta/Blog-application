@@ -47,32 +47,39 @@ export async function loginController(req, res) {
         if ((!email && !username) || !password) {
             return sendRes(res, 400, "Email or Username and Password are required", "error", null);
         }
+
         const user = await UserModel.findOne({ $or: [{ email }, { username }] }).select("+password");
         if (!user) {
             return sendRes(res, 400, "Account not found with the provided email or username", "error", null);
         }
-        const isMatch = await user.comparePassword(password);
+        
+        
+        const isMatch = await bcryptjs.compare(password, user.password);
         if (!isMatch) {
             return sendRes(res, 400, "Invalid email/username or password", "error", null);
         }
+        
         const token = generateToken({ id: user._id });
         res.cookie("token", token)
-        const userData = user.toObject();
-        delete userData.password;
-        return sendRes(res, 200, "Login successful", "success", userData);
+
+        
+        return sendRes(res, 200, "Login successful", "success", user);
     } catch (error) {
         return sendRes(res, 500, "Internal Server Error", "error", null);
     }
 }
 
+
 export async function getUser(req, res) {
    try {
-      const user = req.user.id
+      const userId = req.user.id
+      
+      const user = await UserModel.findById(userId)
        if(!user){
          return sendRes(res, 400, "user not found", "error", null)
       }
 
-      return sendRes(res, 200, "Get user", "success", data)
+      return sendRes(res, 200, "User found successfully", "success", user)
 
    } catch (error) {
       return sendRes(res, 500, "Internal Sever Error", "error", null)
@@ -80,14 +87,14 @@ export async function getUser(req, res) {
 }
 
 
-
 export async function logout(req, res) {
    try{
-      res.clearcookie("token")
-      return sendRes(res, 200, "Logout Successfully", "success", data)
+      res.clearCookie("token")
+      return sendRes(res, 200, "Logout Successfully", "success", null)
    }
    catch (error) {
       return sendRes(res, 500, "Internal Server error", "error", null)
    }
-
 }
+
+
