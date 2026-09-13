@@ -58,34 +58,44 @@ export const deleteblogController = async (req, res) => {
 
 export const getBlogController = async (req, res) => {
    try{
-    const userId = req.user.id;
-    const blogId = req.params.blogId
-    console.log(blogId);
-    
-    if(!userId) {
-        return sendRes(res, 400, "User not found", "error", null)
-    }
-    
-    const getBlog = await BlogModel.findById({ blogId})
+    const userId = req.user.id; 
+    const getBlog = await BlogModel.find({ userId: userId});
+    return sendRes(res, 200, "user blogs retrieved Successfully", "success", getBlog)
 
-    if(!getBlog){
-        return sendRes(res, 400, "blog does not exist", "error", null)
-    }
-
-    return sendRes(res, 200, "Get blog Successfully", "success", getBlog)
 } catch(error) {
-     return sendRes(res, 500, "Internal Server Error", "error", null)
+     return sendRes(res, 500, "Internal Server Error", "error", { message: error.message })
 }
 }
 
-/*
+
 export const getAllBlogController = async (req, res) => {
+try {
+    const getAllblog = await BlogModel.find() 
+    return sendRes(res, 200, "All User blog retrieved successfully")
 
+} catch (error) {
+    return sendRes(res, 500, "Internal Server Error", "error", null)
+}
 }
 
 
 export const updateBlogController = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const{ heading, content} = req.body
+        const blogId = req.params.blogId
 
+        const updateblog = await BlogModel.findByIdAndUpdate({ _id: blogId, userId: userId}, {heading: heading}, {new: true})
+        console.log(updateblog);
+            
+        if(!updateblog){
+             return sendRes(res, 404, "blog not found or unauthorized", "error", null) 
+        }
+       
+        return sendRes(res, 200, "Blog are successfully", "success", updateblog)
+
+    } catch (error) {
+       return sendRes(res, 500, "Internal Server Error", "error", null)
+    }
 }
 
-*/

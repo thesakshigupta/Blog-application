@@ -21,8 +21,7 @@ password: {
 
 },
 phone_No: {
-    type: Number, 
-    required: false,
+    type: Number,
     default: "000-000-0000"
 },
 avatar: {
