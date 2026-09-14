@@ -85,7 +85,9 @@ export const updateBlogController = async (req, res) => {
         const{ heading, content} = req.body
         const blogId = req.params.blogId
 
-        const updateblog = await BlogModel.findByIdAndUpdate({ _id: blogId, userId: userId}, {heading: heading}, {new: true})
+        const updateblog = await BlogModel.findByIdAndUpdate(
+            { _id: blogId, userID: userId},
+            {heading, content}, {new: true})
         console.log(updateblog);
             
         if(!updateblog){

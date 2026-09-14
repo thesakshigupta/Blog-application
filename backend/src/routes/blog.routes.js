@@ -7,7 +7,7 @@ blogRouter.post("/createblog", authentication, createBlogController);
 blogRouter.delete("/delete/:blogId",authentication, deleteblogController);
 blogRouter.get("/read-blog",authentication, getBlogController);
 blogRouter.get("/read-allblog", authentication, getAllBlogController)
-blogRouter.put("/update-blog/:blogId", authentication, )
+blogRouter.put("/update-blog/:blogId", authentication, updateBlogController )
 
 
 
