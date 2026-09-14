@@ -1,5 +1,4 @@
 import followModel from "../model/Follow.Model.js";
-import UserModel from "../model/User.model.js";
 import { sendRes } from "../utils/sendRes.js";
 
 export const followUnfollowUserController = async (req, res) => {
@@ -29,4 +28,6 @@ export const followUnfollowUserController = async (req, res) => {
         return sendRes(res, 500, "Internal Server Error", "error", null)
 }          
 }
+
+
 
