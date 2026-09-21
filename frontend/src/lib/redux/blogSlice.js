@@ -1,6 +1,4 @@
 import {createSlice} from '@reduxjs/toolkit';
-import { follow } from '../../services/follow.api.js';
-
 
 const blogSlice = createSlice({
     name: "blog",
@@ -8,13 +6,13 @@ const blogSlice = createSlice({
         user: [],
         blog: [],
         input: "",
-        like:"",
+        like:[],
         comment:[],
-        follow:""
+        follow:[]
     },
     reducers: {
         setUser: (state, action)  => {
-            state.user = action.payload
+            state.user = [...action.payload]
         },
         setBlog: (state, action) => {
               state.blog = [...action.payload]
@@ -23,13 +21,13 @@ const blogSlice = createSlice({
             state.input = action.payload
         },
         setLike: ( state, action) => {
-            state.like = action.payload
+            state.like =[...action.payload]
         },
         setComment: (state, action) => {
-            state.comment = action.payload
+            state.comment = [...action.payload]
         },
         setFollow: (state, action) => {
-            state.Follow = action.payload
+            state.follow = [...action.payload]
         }
     }
 })
