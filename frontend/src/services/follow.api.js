@@ -1,6 +1,6 @@
 import api from "./api.js";
 
-export const like = () => {
+export const follow = () => {
     try{
    const res = api.get("/lfollow/followUnfollowUserController")
    return res.data

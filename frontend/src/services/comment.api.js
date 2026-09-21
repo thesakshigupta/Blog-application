@@ -1,6 +1,6 @@
 import api from "./api.js";
 
-export const createcommentController = (data) => {
+export const createcomment = (data) => {
     try{
         const res = api.post("/comment/createcommentController", data)
         return res.data
@@ -9,3 +9,6 @@ export const createcommentController = (data) => {
         console.error(error);
     }
 }
+
+
+
