@@ -3,7 +3,8 @@ import React from 'react'
 const Create = () => {
   return (
     <div>
-      this is create
+      <h1>Create Post</h1>
+      <p>This is the create post page.</p>
     </div>
   )
 }
