@@ -13,7 +13,7 @@ export default function Approuter() {
       <BrowserRouter>
        <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/About' element={<App/>}/>
+          <Route path='/About' element={<About/>}/>
           <Route path='/Contact' element={<Contact/>}/>
           <Route path='/Create' element={<Create/>}/>
           <Route path='/Login' element={<Login/>}/>
