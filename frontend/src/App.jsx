@@ -1,15 +1,13 @@
-import React from 'react'
-import Approuter from './routers/Approuter'
-import Navbar from './components/Navbar'
-import footer from './components/footer'
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import Approuter from "./routers/Approuter";
 export default function App() {
   return (
     <div>
-    <Navbar/>
-    <footer/> 
+      <Navbar />
+      <Approuter />
+      <Footer />
     </div>
-  )
+  );
 }
-
-
 
