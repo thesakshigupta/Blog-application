@@ -1,12 +1,11 @@
 import { ArrowRight, BookOpen, Camera, GitBranch, Heart, Mail, X } from "lucide-react";
 import { useState } from "react";
 
-
 const footerLinks = {
   Explore: [
     { name: "Home", href: "/" },
     { name: "Articles", href: "/articles" },
-    { name: "Categories", href: "/categories" },
+    { name: "Create Post", href: "/create" },
     { name: "About us", href: "/about" },
   ],
   Topics: [

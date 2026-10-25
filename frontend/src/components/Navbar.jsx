@@ -2,8 +2,10 @@ import { useState } from "react";
 import { BookOpen, Search, Menu, X, ArrowUpRight } from "lucide-react";
 
 const navLinks = [
+  { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Categories", href: "/categories" },
+  { name: "Contact", href: "/contact" },
+  { name: "Create Post", href: "/create" },
 ];
 
 const categories = ["Technology", "Lifestyle", "Design", "Travel", "Culture"];
