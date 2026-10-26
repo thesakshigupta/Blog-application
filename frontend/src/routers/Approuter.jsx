@@ -14,8 +14,8 @@ export default function Approuter() {
           <Route path='/About' element={<About/>}/>
           <Route path='/Contact' element={<Contact/>}/>
           <Route path='/Create' element={<Create/>}/>
-          <Route path='/Login' element={<Login/>}/>
-          <Route path='/Register' element={<Register/>}/>
+          <Route path='/Signin' element={<Login/>}/>
+          <Route path='/Signup' element={<Register/>}/>
        </Routes>
   )
 }

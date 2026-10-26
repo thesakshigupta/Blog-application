@@ -8,7 +8,7 @@ const navLinks = [
   { name: "Create Post", href: "/create" },
 ];
 
-const categories = ["Technology", "Lifestyle", "Design", "Travel", "Culture"];
+const categories = [];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -40,7 +40,7 @@ export default function Navbar() {
             </span>
 
             <span className="text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl">
-              the daily<span className="text-neutral-400">.</span>
+              The Daily<span className="text-neutral-400"></span>
             </span>
           </a>
 
@@ -123,7 +123,7 @@ export default function Navbar() {
         {/* Category Bar */}
         <div className="hidden items-center justify-between border-t border-neutral-100 py-3 md:flex">
           <span className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-400">
-            Explore topics
+            
           </span>
 
           <nav className="flex items-center gap-7">
