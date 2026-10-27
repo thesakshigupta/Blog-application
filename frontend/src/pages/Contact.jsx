@@ -17,7 +17,7 @@ const Contact = () => {
         <p className="mx-auto max-w-xl leading-7 text-slate-500">
           Have a project in mind? Let's work together
           to bring your ideas to life.
-        </p>
+        </p>  
       </div>
 
       {/* Contact Content */}
