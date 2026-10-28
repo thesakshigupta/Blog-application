@@ -6,35 +6,84 @@ export function useBlog() {
   const dispatch = useDispatch();
 
   async function handleCreateBlog({ heading, content }) {
-    const res = await createBlog({ heading, content });
-    return res;
+    try {
+      const res = await createBlog({ heading, content });
+      if (res.status === 'success') {
+        // Refresh all blogs
+        handleGetAllBlogs();
+        return { success: true, data: res.data };
+      }
+      return { success: false, error: res.message || 'Failed to create blog' };
+    } catch (err) {
+      const errorMsg =
+        err.response?.data?.message ||
+        err.response?.data?.errors?.[0]?.message ||
+        err.message ||
+        'Failed to publish article';
+      return { success: false, error: errorMsg };
+    }
   }
 
   async function handleDeleteBlog(blogId) {
-    const res = await deleteBlog(blogId);
-    return res;
+    try {
+      const res = await deleteBlog(blogId);
+      if (res.status === 'success') {
+        // Refresh all blogs
+        handleGetAllBlogs();
+        return { success: true, data: res.data };
+      }
+      return { success: false, error: res.message || 'Failed to delete' };
+    } catch (err) {
+      const errorMsg = err.response?.data?.message || err.message || 'Failed to delete';
+      return { success: false, error: errorMsg };
+    }
   }
 
   async function handleGetMyBlogs() {
-    const res = await getMyBlogs();
-    if (res.status === 'success') {
-      dispatch(setMyBlogs(res.data));
+    try {
+      const res = await getMyBlogs();
+      if (res.status === 'success') {
+        dispatch(setMyBlogs(res.data || []));
+        return { success: true, data: res.data };
+      }
+      return { success: false, error: res.message };
+    } catch (err) {
+      return { success: false, error: err.message };
     }
-    return res;
   }
 
   async function handleGetAllBlogs() {
-    const res = await getAllBlogs();
-    if (res.status === 'success') {
-      dispatch(setBlogs(res.data));
+    try {
+      const res = await getAllBlogs();
+      if (res.status === 'success') {
+        dispatch(setBlogs(res.data || []));
+        return { success: true, data: res.data };
+      }
+      return { success: false, error: res.message };
+    } catch (err) {
+      return { success: false, error: err.message };
     }
-    return res;
   }
 
   async function handleUpdateBlog(blogId, { heading, content }) {
-    const res = await updateBlog(blogId, { heading, content });
-    return res;
+    try {
+      const res = await updateBlog(blogId, { heading, content });
+      if (res.status === 'success') {
+        handleGetAllBlogs();
+        return { success: true, data: res.data };
+      }
+      return { success: false, error: res.message };
+    } catch (err) {
+      const errorMsg = err.response?.data?.message || err.message || 'Failed to update';
+      return { success: false, error: errorMsg };
+    }
   }
 
-  return { handleCreateBlog, handleDeleteBlog, handleGetMyBlogs, handleGetAllBlogs, handleUpdateBlog };
+  return {
+    handleCreateBlog,
+    handleDeleteBlog,
+    handleGetMyBlogs,
+    handleGetAllBlogs,
+    handleUpdateBlog,
+  };
 }

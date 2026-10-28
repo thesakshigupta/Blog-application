@@ -8,40 +8,69 @@ export function useUser() {
   const navigate = useNavigate();
 
   async function handleSignup({ username, email, password }) {
-    const res = await signup({ username, email, password });
-    if (res.status === 'success') {
-      dispatch(setUser(res.data));
-      navigate('/Home');
+    try {
+      const res = await signup({ username, email, password });
+      if (res.status === 'success') {
+        dispatch(setUser(res.data));
+        navigate('/Home');
+        return { success: true, data: res.data };
+      }
+      return { success: false, error: res.message || 'Signup failed' };
+    } catch (err) {
+      const errorMsg =
+        err.response?.data?.message ||
+        err.response?.data?.errors?.[0]?.message ||
+        err.message ||
+        'Failed to create account';
+      return { success: false, error: errorMsg };
     }
-    return res;
   }
 
   async function handleLogin({ username, email, password }) {
-    const res = await login({ username, email, password });
-    if (res.status === 'success') {
-      dispatch(setUser(res.data));
-      navigate('/Home');
+    try {
+      const payload = { password };
+      if (username) payload.username = username;
+      if (email) payload.email = email;
+
+      const res = await login(payload);
+      if (res.status === 'success') {
+        dispatch(setUser(res.data));
+        navigate('/Home');
+        return { success: true, data: res.data };
+      }
+      return { success: false, error: res.message || 'Login failed' };
+    } catch (err) {
+      const errorMsg =
+        err.response?.data?.message ||
+        err.response?.data?.errors?.[0]?.message ||
+        err.message ||
+        'Invalid credentials';
+      return { success: false, error: errorMsg };
     }
-    return res;
   }
 
   async function handleGetUser() {
     try {
       const res = await getUser();
-      if (res.status === 'success') {
+      if (res && res.status === 'success') {
         dispatch(setUser(res.data));
+        return { success: true, data: res.data };
       }
-      return res;
+      return { success: false };
     } catch {
-      return null;
+      return { success: false };
     }
   }
 
   async function handleLogout() {
-    const res = await logout();
-    dispatch(clearUser());
-    navigate('/Signin');
-    return res;
+    try {
+      await logout();
+    } catch (err) {
+      console.warn('Logout API error:', err);
+    } finally {
+      dispatch(clearUser());
+      navigate('/Signin');
+    }
   }
 
   return { handleSignup, handleLogin, handleGetUser, handleLogout };
