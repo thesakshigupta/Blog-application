@@ -1,43 +1,21 @@
 import api from "./api.js";
 
-
-
 export const signup = async (data) => {
-    try {
-        const res = await api.post("/user/Register", data);
-        return res.data
-    } catch (error) {
-        console.error(error);
-    }
-}
+  const res = await api.post("/user/register", data);
+  return res.data;
+};
 
 export const login = async (data) => {
-    try {
-        const res = await api.post("/user/loginController", data);
-        return res.data
-    } catch (error) {
-        console.error(error);
-        
-    }
-}
+  const res = await api.post("/user/login", data);
+  return res.data;
+};
 
 export const getUser = async () => {
-    try {
-        const res = await api.get("/user/getuser")
-        return res.data;
-    } catch (error) {
-        console.error(error);   
-    }
-}
-
+  const res = await api.get("/user/getuser");
+  return res.data;
+};
 
 export const logout = async () => {
-    try {
-        const res = await api.get("/user/logout")
-        return res.data
-    } catch (error) {
-        console.error(error);
-        
-    }
-}
-
+  const res = await api.get("/user/logout");
+  return res.data;
+};

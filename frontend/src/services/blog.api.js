@@ -1,51 +1,26 @@
 import api from "./api.js";
 
-export const createblog = (data) => {
-    try {
-        const res = api.post("/blog/createBlogController", data);
-     return res.data
-    } catch (error) {
-        console.error(error);
-    }
-     
-}
+export const createBlog = async (data) => {
+  const res = await api.post("/blog/createblog", data);
+  return res.data;
+};
 
-export const deleteblog = () => {
-    try {
-        const res = api.delete("/blog/deleteblogController")
-        return res.data
-    } catch (error) {
-        console.error(error);
-        
-    }
-}
+export const deleteBlog = async (blogId) => {
+  const res = await api.delete(`/blog/delete/${blogId}`);
+  return res.data;
+};
 
+export const getMyBlogs = async () => {
+  const res = await api.get("/blog/read-blog");
+  return res.data;
+};
 
-export const getBlog = () => {
-    try {
-        const res = api.get("/blog/getBlogController");
-        return res.data
-    } catch (error) {
-        console.error(error);
-    }
-}
+export const getAllBlogs = async () => {
+  const res = await api.get("/blog/read-allblog");
+  return res.data;
+};
 
-export const getAllBlog = () => {
-    try {
-        const res = api.get("/blog/getAllBlog")
-        return res.data
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-
-export const updateBlog = (data) => {
-    try {
-        const res = api.put("/blog/updateBlogController", data)
-        return res.data
-    } catch (error) {
-        console.error(error);
-    }
-}
-
+export const updateBlog = async (blogId, data) => {
+  const res = await api.put(`/blog/update-blog/${blogId}`, data);
+  return res.data;
+};

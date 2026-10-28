@@ -1,13 +1,6 @@
 import api from "./api.js";
 
-export const like = () => {
-    try{
-        const res = api.get("/like/likeUnlikePostController")
-        return res.data
-    }
-    catch (error) {
-        console.error(error);
-    }    
-}
-
-
+export const toggleLike = async (blogId) => {
+  const res = await api.get(`/like/likeUser/${blogId}`);
+  return res.data;
+};

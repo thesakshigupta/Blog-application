@@ -29,7 +29,7 @@ try {
    })
    
    const token = generateToken({ id: user._id})
-   res.cookie("token", token)
+   res.cookie("token", token, { httpOnly: true, sameSite: 'lax', maxAge: 2 * 24 * 60 * 60 * 1000 })
 
    return sendRes(res, 201, "Register Successfully ", "success", user) 
 
@@ -60,7 +60,7 @@ export async function loginController(req, res) {
         }
         
         const token = generateToken({ id: user._id });
-        res.cookie("token", token)
+        res.cookie("token", token, { httpOnly: true, sameSite: 'lax', maxAge: 2 * 24 * 60 * 60 * 1000 })
 
         
         return sendRes(res, 200, "Login successful", "success", user);

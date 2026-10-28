@@ -1,11 +1,10 @@
-import { createcomment } from "../services/comment.api.js";
+import { createComment } from "../services/comment.api.js";
 
- export async function useComment() {
-       async function handleCreateComment({comment}) {
-          const res = await createcomment({comment})
-          return res.data
-       }
-       
-     return {handleCreateComment}  
+export function useComment() {
+  async function handleCreateComment(blogId, comment) {
+    const res = await createComment(blogId, { comment });
+    return res;
+  }
+
+  return { handleCreateComment };
 }
-

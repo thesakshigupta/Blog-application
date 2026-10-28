@@ -1,34 +1,40 @@
-import React from 'react'
-import { createblog, deleteblog, getBlog, getAllBlog, updateBlog  } from '../services/blog.api.js'
+import { useDispatch } from 'react-redux';
+import { createBlog, deleteBlog, getMyBlogs, getAllBlogs, updateBlog } from '../services/blog.api.js';
+import { setBlogs, setMyBlogs } from '../lib/redux/blogSlice';
 
-export async function useBlog() {
-    async function handlecreateBlog({heading, content}) {
-        const res = await createblog({heading, content})
-        return res.data
+export function useBlog() {
+  const dispatch = useDispatch();
+
+  async function handleCreateBlog({ heading, content }) {
+    const res = await createBlog({ heading, content });
+    return res;
+  }
+
+  async function handleDeleteBlog(blogId) {
+    const res = await deleteBlog(blogId);
+    return res;
+  }
+
+  async function handleGetMyBlogs() {
+    const res = await getMyBlogs();
+    if (res.status === 'success') {
+      dispatch(setMyBlogs(res.data));
     }
+    return res;
+  }
 
-    async function handledeleteBlog() {
-        const res = await deleteblog()
-        return res.data
+  async function handleGetAllBlogs() {
+    const res = await getAllBlogs();
+    if (res.status === 'success') {
+      dispatch(setBlogs(res.data));
     }
+    return res;
+  }
 
-    async function handlegetBlog() {
-        const res = await getBlog();
-        return res.data
-    }
+  async function handleUpdateBlog(blogId, { heading, content }) {
+    const res = await updateBlog(blogId, { heading, content });
+    return res;
+  }
 
-    async function handlegetAllBlog() {
-        const res = await getAllBlog()
-        return res.data
-    }
-
-    async function handleUpdateBlog({heading, content}) {
-        const res = await updateBlog({heading, content})
-        return res.data
-    }
- 
-    return{handlecreateBlog, handledeleteBlog, handlegetBlog, handlegetAllBlog, handleUpdateBlog }
-
+  return { handleCreateBlog, handleDeleteBlog, handleGetMyBlogs, handleGetAllBlogs, handleUpdateBlog };
 }
-
-

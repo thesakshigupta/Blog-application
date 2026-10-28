@@ -1,11 +1,10 @@
-import { follow } from "../services/follow.api.js";
+import { toggleFollow } from "../services/follow.api.js";
 
-export async function useFollow() {
-    async function handleFollow() {
-        const res = await follow()
-        return res.data
-    }
+export function useFollow() {
+  async function handleFollow(userId) {
+    const res = await toggleFollow(userId);
+    return res;
+  }
 
-    return {handleFollow}
+  return { handleFollow };
 }
-

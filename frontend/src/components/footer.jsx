@@ -52,7 +52,7 @@ export default function Footer() {
               </span>
 
               <span className="text-2xl font-bold tracking-tight text-white">
-                the daily<span className="text-neutral-500">.</span>
+                the Daily<span className="text-neutral-500"></span>
               </span>
             </a>
 

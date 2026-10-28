@@ -20,7 +20,7 @@ export const createBlogController =  async (req, res) => {
     const blog = await BlogModel.create({
         heading,
         content,
-        userId: isuser
+        userId: userId
     })
     
     return sendRes(res, 200, "Create Blog Successfully", "success", blog)
@@ -70,8 +70,8 @@ export const getBlogController = async (req, res) => {
 
 export const getAllBlogController = async (req, res) => {
 try {
-    const getAllblog = await BlogModel.find() 
-    return sendRes(res, 200, "All User blog retrieved successfully")
+    const getAllblog = await BlogModel.find().populate('userId', 'username avatar')
+    return sendRes(res, 200, "All User blog retrieved successfully", "success", getAllblog)
 
 } catch (error) {
     return sendRes(res, 500, "Internal Server Error", "error", null)

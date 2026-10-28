@@ -1,13 +1,6 @@
 import api from "./api.js";
 
-export const follow = () => {
-    try{
-   const res = api.get("/lfollow/followUnfollowUserController")
-   return res.data
-   } catch (error) {
-    console.error(error);
-   }
-}
-
-
-
+export const toggleFollow = async (userId) => {
+  const res = await api.get(`/follow/followUser/${userId}`);
+  return res.data;
+};

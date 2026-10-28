@@ -1,37 +1,30 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const blogSlice = createSlice({
-    name: "blog",
-    initialState: {
-        user: [],
-        blog: [],
-        input: "",
-        like:[],
-        comment:[],
-        follow:[]
+  name: "blog",
+  initialState: {
+    user: null,
+    isLoggedIn: false,
+    blogs: [],
+    myBlogs: [],
+  },
+  reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload;
+      state.isLoggedIn = !!action.payload;
     },
-    reducers: {
-        setUser: (state, action)  => {
-            state.user = [...action.payload]
-        },
-        setBlog: (state, action) => {
-              state.blog = [...action.payload]
-        },
-        setInput: (state, action) => {
-            state.input = action.payload
-        },
-        setLike: ( state, action) => {
-            state.like =[...action.payload]
-        },
-        setComment: (state, action) => {
-            state.comment = [...action.payload]
-        },
-        setFollow: (state, action) => {
-            state.follow = [...action.payload]
-        }
-    }
-})
+    clearUser: (state) => {
+      state.user = null;
+      state.isLoggedIn = false;
+    },
+    setBlogs: (state, action) => {
+      state.blogs = action.payload;
+    },
+    setMyBlogs: (state, action) => {
+      state.myBlogs = action.payload;
+    },
+  }
+});
 
-
-export default blogSlice.reducer
-export const{setBlog, setComment, setFollow, setInput,setUser, setLike} = blogSlice.actions
+export default blogSlice.reducer;
+export const { setUser, clearUser, setBlogs, setMyBlogs } = blogSlice.actions;
