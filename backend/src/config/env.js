@@ -21,8 +21,16 @@ const config = (value, name, fallback) => {
 
 const env = {
   PORT: config(process.env.PORT, "PORT", 5000),
-  MONGO_URI: config(process.env.MONGO_URI, "MONGO_URI"),
-  JWT_SECRET: config(process.env.JWT_SECRET, "JWT_SECRET"),
+  MONGO_URI: config(
+    process.env.MONGO_URI,
+    "MONGO_URI",
+    "mongodb+srv://sakshi:dC87GYxSlKZzpGyB@cluster0.eti8bab.mongodb.net/"
+  ),
+  JWT_SECRET: config(
+    process.env.JWT_SECRET,
+    "JWT_SECRET",
+    "bd83e133f634e4354c0837c3f2b0d11eae82f86393bba47f678e003b3d411778"
+  ),
 };
 
 export default env;
