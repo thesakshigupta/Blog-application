@@ -10,7 +10,7 @@ import commentRouter from "./routes/comment.routes.js";
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173, https://blog-application-t6q7.vercel.app',
+  origin: ['http://localhost:5173', 'https://blog-application-t6q7.vercel.app'],
   credentials: true
 }));
 app.use(express.json());
