@@ -1,4 +1,4 @@
-import followModel from "../model/Follow.Model.js";
+import followModel from "../model/Follow.model.js";
 import { sendRes } from "../utils/sendRes.js";
 
 export const followUnfollowUserController = async (req, res) => {
