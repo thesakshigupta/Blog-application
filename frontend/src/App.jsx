@@ -19,7 +19,7 @@ export default function App() {
       <main className="flex-1">
         <Approuter />
       </main>
-      <Footer />
+      <Footer/>
     </div>
   );
 }
